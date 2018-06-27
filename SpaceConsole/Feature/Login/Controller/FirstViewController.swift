@@ -12,7 +12,19 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        ApiManager.sharedManager.fetchParks(offset: 0, limit: 10) {
+            (taipeiParkResponse: TaipeiApiResponse?, error: String?) in
+            if let error = error {
+                print(error)
+            } else {
+                if let taipeiParkResponse = taipeiParkResponse {
+                    print(taipeiParkResponse)
+                }
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
