@@ -1,16 +1,45 @@
 PODS:
   - Alamofire (4.7.2)
+  - HMSegmentedControl (1.5.5)
+  - MGSwipeTableCell (1.6.7)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+  - SideMenu (4.0.0)
+  - SnapKit (4.0.0)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - HMSegmentedControl
+  - MGSwipeTableCell
+  - RxCocoa (~> 4.0)
+  - RxSwift (~> 4.0)
+  - SideMenu
+  - SnapKit (~> 4.0.0)
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - HMSegmentedControl
+    - MGSwipeTableCell
+    - RxCocoa
+    - RxSwift
+    - SideMenu
+    - SnapKit
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: cdce6d03d33a2ba60a80f54152791d62fc4dfffa
+PODFILE CHECKSUM: 3473e9f3a06d770a92df585cf66dcbf0faeaa3d2
 
 COCOAPODS: 1.5.3

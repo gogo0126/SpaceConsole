@@ -8,5 +8,12 @@ target 'SpaceConsole' do
   inhibit_all_warnings!
   # Pods for SpaceConsole
   pod 'Alamofire', '~> 4.7'
-
+  pod 'SnapKit', '~> 4.0.0'
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
+  pod 'SVProgressHUD'
+  pod 'MGSwipeTableCell'
+  pod 'HMSegmentedControl'
+  pod 'SideMenu'
+  
 end

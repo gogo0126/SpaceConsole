@@ -40,7 +40,8 @@ public class ApiManager: BusinessServiceProtocol {
     //        completion(nil, nil)
     //    }
     
-    func fetchParks<T: ResponseProtocol>(offset: Int, limit: Int,
+    func fetchParks<T: ResponseProtocol>(offset: Int,
+                                         limit: Int,
                                          completion: @escaping (_ responseSerialized: T?, _ error: String?) -> ()) {
 
         let taipeiParkRequest = TaipeiParkRouter.fetch(offset: offset, limit: limit)

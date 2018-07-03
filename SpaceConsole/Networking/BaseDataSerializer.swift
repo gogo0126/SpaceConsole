@@ -10,10 +10,6 @@ import Foundation
 import Alamofire
 
 struct BaseDataSerializer<T:ResponseProtocol>: DataResponseSerializerProtocol {
-
-    enum TaipeiParkDataSerializerError: Error {
-        case InvalidData
-    }
     
     var serializeResponse: (URLRequest?, HTTPURLResponse?, Data?, Error?) -> Alamofire.Result<T> {
         return { (request, response, data, error) in
