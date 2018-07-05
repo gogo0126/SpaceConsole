@@ -26,6 +26,8 @@
 		6314EC7B20EB23A5008E5310 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC7920EB23A5008E5310 /* SideMenuCell.swift */; };
 		6314EC7C20EB23A5008E5310 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6314EC7A20EB23A5008E5310 /* SideMenuCell.xib */; };
 		6314EC7F20EB25A1008E5310 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC7E20EB25A1008E5310 /* SideMenuModel.swift */; };
+		6314EC8220EDB5E2008E5310 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */; };
+		6314EC8420EDC2B9008E5310 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */; };
 		63192A7D20E9B447000DC6AA /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63192A7B20E9B447000DC6AA /* SideMenuViewController.swift */; };
 		63192A7E20E9B447000DC6AA /* SideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63192A7C20E9B447000DC6AA /* SideMenuViewController.xib */; };
 		63192A8120E9B476000DC6AA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63192A7F20E9B476000DC6AA /* MainViewController.swift */; };
@@ -58,6 +60,8 @@
 		6314EC7920EB23A5008E5310 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		6314EC7A20EB23A5008E5310 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		6314EC7E20EB25A1008E5310 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
+		6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		63192A7B20E9B447000DC6AA /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		63192A7C20E9B447000DC6AA /* SideMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuViewController.xib; sourceTree = "<group>"; };
 		63192A7F20E9B476000DC6AA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				6307C63920E4BE67006573C5 /* ViewManager.xib */,
 				6307C63C20E4BEB0006573C5 /* NibDesignable.swift */,
 				63192A8320E9CD96000DC6AA /* PopupController.swift */,
+				6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */,
+				6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6314EC8220EDB5E2008E5310 /* UITextField+Extension.swift in Sources */,
 				6307C61520E32F0A006573C5 /* SecondViewController.swift in Sources */,
 				6307C63D20E4BEB0006573C5 /* NibDesignable.swift in Sources */,
 				631F5B8120EA27B50041BC88 /* MainNavigationController.swift in Sources */,
@@ -374,6 +381,7 @@
 				6307C61320E32F0A006573C5 /* FirstViewController.swift in Sources */,
 				6307C63F20E4C052006573C5 /* LoginNavigationController.swift in Sources */,
 				63192A8420E9CD96000DC6AA /* PopupController.swift in Sources */,
+				6314EC8420EDC2B9008E5310 /* UIButton+Extension.swift in Sources */,
 				6307C62D20E3346F006573C5 /* ApiManager.swift in Sources */,
 				6314EC7F20EB25A1008E5310 /* SideMenuModel.swift in Sources */,
 				6307C62F20E3347A006573C5 /* TaipeiModel.swift in Sources */,

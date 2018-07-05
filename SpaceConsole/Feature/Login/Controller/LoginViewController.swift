@@ -9,23 +9,101 @@
 import UIKit
 import SideMenu
 import RxSwift
+import RxCocoa
+
+fileprivate let minimalPasswordLength = 5
+fileprivate let maxmalPasswordLength = 20
 
 class LoginViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
+
+    @IBOutlet weak var accountTextField: UITextField!
+    
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var loginButton: UIButton!
+    
+    @IBOutlet weak var accountErrorLabel: UILabel!
+    
+    @IBOutlet weak var passwordErrorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "登入"
-    
-//        setupSideMenu()
-        
-//        setRightItemSearch()
-//        setupLeftBarItem()
+        self.navigationController?.navigationBar.isHidden = true
 
-//        emailTextField.becomeFirstResponder()
+        self.accountTextField.setUnderline()
+        self.passwordTextField.setUnderline()
+        self.loginButton.setCycleBorder()
         
-//        ViewManager.sharedManager.pleaseWait()
-//
+        
+        let usernameObservable = self.accountTextField.rx.text.orEmpty.asObservable()
+            .distinctUntilChanged()
+            
+        usernameObservable
+            .map {
+                if $0.count == 0 {
+                    return "請輸入Email"
+                }
+                else if !self.isValidEmail(email: $0) {
+                    return "不是正確的Email格式"
+                }
+                else {
+                    return ""
+                }
+            }
+            .bind(to: accountErrorLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        let usernameCheckMailValid =
+            usernameObservable
+                .map ({ (text: String) -> Bool in
+                if text.count == 0 {
+                    return false
+                }
+                else if !self.isValidEmail(email: text) {
+                    return false
+                }
+                else {
+                    return true
+                }
+            })
+            .share(replay: 1)
+
+        usernameCheckMailValid
+            .bind(to: passwordTextField.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        
+        let passwordValid = self.passwordTextField.rx.text.orEmpty
+            .map { $0.count > minimalPasswordLength && $0.count < maxmalPasswordLength }
+            .share(replay: 1)
+            
+        passwordValid
+            .bind(to: passwordErrorLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        let combineValid = Observable.combineLatest(usernameCheckMailValid, passwordValid) { $0 && $1 }
+            .share(replay: 1)
+        
+        combineValid
+            .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        loginButton.rx.tap
+            .subscribe(onNext: {
+                ViewManager.sharedManager.showBusy(text: "登入中...")
+                DispatchQueue.global().async {
+                    sleep(2)
+                    DispatchQueue.main.async {
+                        ViewManager.sharedManager.toMain()
+                        ViewManager.sharedManager.clearAllNotice()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
 //        ApiManager.sharedManager.fetchParks(offset: 0, limit: 10) {
 //            (taipeiParkResponse: TaipeiApiResponse?, error: String?) in
 //            ViewManager.sharedManager.clearAllNotice()
@@ -38,54 +116,17 @@ class LoginViewController: BaseViewController {
 //                }
 //            }
 //        }
-
-        
     }
     
-    fileprivate func setupSideMenu() {
-        // Define the menus
-    
-        let leftMenuViewController = SideMenuViewController()
-        SideMenuManager.default.menuLeftNavigationController = UISideMenuNavigationController(rootViewController: leftMenuViewController)
-        
-        // Enable gestures. The left and/or right menus must be set up above for these to work.
-        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        
-        
-        SideMenuManager.default.menuPresentMode = .menuSlideIn
-        SideMenuManager.default.menuFadeStatusBar = false
-        
-
-        // Set up a cool background image for demo purposes
-//        SideMenuManager.default.menuAnimationBackgroundColor = .blue
-//            UIColor(patternImage: UIImage(named: "background")!)
+    func isValidEmail(email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
     }
-
-    
     
     @IBAction func ClickMe(_ sender: Any) {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+
     }
     
-    func dissMe() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
