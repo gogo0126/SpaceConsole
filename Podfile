@@ -16,5 +16,4 @@ target 'SpaceConsole' do
   pod 'HMSegmentedControl'
   pod 'SideMenu'
   pod 'SDWebImage/WebP'
-  
 end
