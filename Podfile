@@ -15,5 +15,6 @@ target 'SpaceConsole' do
   pod 'MGSwipeTableCell'
   pod 'HMSegmentedControl'
   pod 'SideMenu'
+  pod 'SDWebImage/WebP'
   
 end

@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6307C61120E32F0A006573C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307C61020E32F0A006573C5 /* AppDelegate.swift */; };
-		6307C61320E32F0A006573C5 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307C61220E32F0A006573C5 /* FirstViewController.swift */; };
-		6307C61520E32F0A006573C5 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307C61420E32F0A006573C5 /* SecondViewController.swift */; };
 		6307C61820E32F0A006573C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6307C61620E32F0A006573C5 /* Main.storyboard */; };
 		6307C61A20E32F0B006573C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6307C61920E32F0B006573C5 /* Assets.xcassets */; };
 		6307C61D20E32F0B006573C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6307C61B20E32F0B006573C5 /* LaunchScreen.storyboard */; };
@@ -28,12 +26,16 @@
 		6314EC7F20EB25A1008E5310 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC7E20EB25A1008E5310 /* SideMenuModel.swift */; };
 		6314EC8220EDB5E2008E5310 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */; };
 		6314EC8420EDC2B9008E5310 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */; };
+		6314EC8720EF6E6C008E5310 /* OrderInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8620EF6E6C008E5310 /* OrderInfoModel.swift */; };
+		6314EC8A20F306E5008E5310 /* OrderInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6314EC8820F306E5008E5310 /* OrderInfoCell.swift */; };
+		6314EC8B20F306E5008E5310 /* OrderInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6314EC8920F306E5008E5310 /* OrderInfoCell.xib */; };
 		63192A7D20E9B447000DC6AA /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63192A7B20E9B447000DC6AA /* SideMenuViewController.swift */; };
 		63192A7E20E9B447000DC6AA /* SideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63192A7C20E9B447000DC6AA /* SideMenuViewController.xib */; };
 		63192A8120E9B476000DC6AA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63192A7F20E9B476000DC6AA /* MainViewController.swift */; };
 		63192A8220E9B476000DC6AA /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63192A8020E9B476000DC6AA /* MainViewController.xib */; };
 		63192A8420E9CD96000DC6AA /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63192A8320E9CD96000DC6AA /* PopupController.swift */; };
 		631F5B8120EA27B50041BC88 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631F5B8020EA27B50041BC88 /* MainNavigationController.swift */; };
+		632AE7E320F3593300F5C3D6 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632AE7E220F3593300F5C3D6 /* UIView+Extension.swift */; };
 		63354D6420E4CD3400BCA32F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63354D6320E4CD3400BCA32F /* BaseViewController.swift */; };
 		AB5416F79AB1C28A5C0420F6 /* Pods_SpaceConsole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8213242AA58E0CC78788B90 /* Pods_SpaceConsole.framework */; };
 /* End PBXBuildFile section */
@@ -41,8 +43,6 @@
 /* Begin PBXFileReference section */
 		6307C60D20E32F0A006573C5 /* SpaceConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6307C61020E32F0A006573C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6307C61220E32F0A006573C5 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		6307C61420E32F0A006573C5 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		6307C61720E32F0A006573C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6307C61920E32F0B006573C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6307C61C20E32F0B006573C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,12 +62,16 @@
 		6314EC7E20EB25A1008E5310 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 		6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		6314EC8620EF6E6C008E5310 /* OrderInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoModel.swift; sourceTree = "<group>"; };
+		6314EC8820F306E5008E5310 /* OrderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoCell.swift; sourceTree = "<group>"; };
+		6314EC8920F306E5008E5310 /* OrderInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderInfoCell.xib; sourceTree = "<group>"; };
 		63192A7B20E9B447000DC6AA /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		63192A7C20E9B447000DC6AA /* SideMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuViewController.xib; sourceTree = "<group>"; };
 		63192A7F20E9B476000DC6AA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		63192A8020E9B476000DC6AA /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		63192A8320E9CD96000DC6AA /* PopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
 		631F5B8020EA27B50041BC88 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		632AE7E220F3593300F5C3D6 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		63354D6320E4CD3400BCA32F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CEB0157D3AC32124105BC419 /* Pods-SpaceConsole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceConsole.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceConsole/Pods-SpaceConsole.release.xcconfig"; sourceTree = "<group>"; };
 		DDDADB5A654056B2B33B523C /* Pods-SpaceConsole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpaceConsole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpaceConsole/Pods-SpaceConsole.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +174,6 @@
 			children = (
 				6307C63E20E4C052006573C5 /* LoginNavigationController.swift */,
 				6307C64120E4C06E006573C5 /* LoginViewController.swift */,
-				6307C61220E32F0A006573C5 /* FirstViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,10 +189,12 @@
 		6307C63320E337FC006573C5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				6307C61420E32F0A006573C5 /* SecondViewController.swift */,
+				6314EC8520EF6E18008E5310 /* Model */,
 				631F5B8020EA27B50041BC88 /* MainNavigationController.swift */,
 				63192A7F20E9B476000DC6AA /* MainViewController.swift */,
 				63192A8020E9B476000DC6AA /* MainViewController.xib */,
+				6314EC8820F306E5008E5310 /* OrderInfoCell.swift */,
+				6314EC8920F306E5008E5310 /* OrderInfoCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				63192A8320E9CD96000DC6AA /* PopupController.swift */,
 				6314EC8120EDB5E2008E5310 /* UITextField+Extension.swift */,
 				6314EC8320EDC2B9008E5310 /* UIButton+Extension.swift */,
+				632AE7E220F3593300F5C3D6 /* UIView+Extension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -212,6 +218,14 @@
 			isa = PBXGroup;
 			children = (
 				6314EC7E20EB25A1008E5310 /* SideMenuModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6314EC8520EF6E18008E5310 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6314EC8620EF6E6C008E5310 /* OrderInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +317,7 @@
 				6314EC7C20EB23A5008E5310 /* SideMenuCell.xib in Resources */,
 				6307C63B20E4BE67006573C5 /* ViewManager.xib in Resources */,
 				6307C61A20E32F0B006573C5 /* Assets.xcassets in Resources */,
+				6314EC8B20F306E5008E5310 /* OrderInfoCell.xib in Resources */,
 				63192A8220E9B476000DC6AA /* MainViewController.xib in Resources */,
 				6307C61820E32F0A006573C5 /* Main.storyboard in Resources */,
 			);
@@ -323,9 +338,11 @@
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -334,9 +351,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -368,8 +387,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6314EC8720EF6E6C008E5310 /* OrderInfoModel.swift in Sources */,
 				6314EC8220EDB5E2008E5310 /* UITextField+Extension.swift in Sources */,
-				6307C61520E32F0A006573C5 /* SecondViewController.swift in Sources */,
 				6307C63D20E4BEB0006573C5 /* NibDesignable.swift in Sources */,
 				631F5B8120EA27B50041BC88 /* MainNavigationController.swift in Sources */,
 				6307C63A20E4BE67006573C5 /* ViewManager.swift in Sources */,
@@ -378,11 +397,12 @@
 				6307C62B20E3346F006573C5 /* BaseDataSerializer.swift in Sources */,
 				63354D6420E4CD3400BCA32F /* BaseViewController.swift in Sources */,
 				63192A8120E9B476000DC6AA /* MainViewController.swift in Sources */,
-				6307C61320E32F0A006573C5 /* FirstViewController.swift in Sources */,
+				6314EC8A20F306E5008E5310 /* OrderInfoCell.swift in Sources */,
 				6307C63F20E4C052006573C5 /* LoginNavigationController.swift in Sources */,
 				63192A8420E9CD96000DC6AA /* PopupController.swift in Sources */,
 				6314EC8420EDC2B9008E5310 /* UIButton+Extension.swift in Sources */,
 				6307C62D20E3346F006573C5 /* ApiManager.swift in Sources */,
+				632AE7E320F3593300F5C3D6 /* UIView+Extension.swift in Sources */,
 				6314EC7F20EB25A1008E5310 /* SideMenuModel.swift in Sources */,
 				6307C62F20E3347A006573C5 /* TaipeiModel.swift in Sources */,
 				6307C62C20E3346F006573C5 /* TaipeiParkRouter.swift in Sources */,

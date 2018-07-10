@@ -32,6 +32,10 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isHidden = true
+        
+        self.accountTextField.text = "space@spaceadvisor.com.tw"
+        self.passwordTextField.text = "123456"
+        self.passwordTextField.isSecureTextEntry = true
 
         self.accountTextField.setUnderline()
         self.passwordTextField.setUnderline()
@@ -95,7 +99,7 @@ class LoginViewController: BaseViewController {
             .subscribe(onNext: {
                 ViewManager.sharedManager.showBusy(text: "登入中...")
                 DispatchQueue.global().async {
-                    sleep(2)
+                    sleep(UInt32(0.5))
                     DispatchQueue.main.async {
                         ViewManager.sharedManager.toMain()
                         ViewManager.sharedManager.clearAllNotice()
