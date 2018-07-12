@@ -60,6 +60,13 @@ class SideMenuViewController: UIViewController {
                 self?.tableView.deselectRow(at: indexPath, animated: false)
                 
                 let model = self!.defaultItems![indexPath.row]
+                
+                if !model.isExpandable {
+                    ViewManager.sharedManager.closeLeftSideMenu()
+                    ViewManager.sharedManager.toPlaceList()
+                    return
+                }
+                
                 model.expanded = !model.expanded
                 let title = model.title
                 

@@ -65,6 +65,12 @@ extension ViewManager {
         ViewManager.sharedManager.setRootViewController(nc)
     }
 
+    func toPlaceList() {
+        let layout = UICollectionViewFlowLayout()
+        let placeViewController = PlaceViewController(collectionViewLayout: layout)
+        let nc = UINavigationController(rootViewController: placeViewController)
+        ViewManager.sharedManager.setRootViewController(nc)
+    }
 
 }
 
