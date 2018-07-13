@@ -44,7 +44,7 @@ class PopupController {
     
     var darkBG: UIView = {
         var view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.alpha = 0
         return view
     }()

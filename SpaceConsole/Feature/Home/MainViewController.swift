@@ -35,15 +35,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "Space Advisor"
-
-        self.leftTableView.register(UINib(nibName: "OrderInfoCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.rightTableView.register(UINib(nibName: "OrderInfoCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
-
+        setupTitleBarItem()
         setupLeftBarItem()
+        setupRightBarItem()
+        
         setupBannerView()
         setBannerList()
         setupSegment()
+        setupTableView()
         createFakeData()
     }
 
@@ -59,9 +58,17 @@ class MainViewController: UIViewController {
         
     }
     
+    func setupTitleBarItem() {
+        let titleImageView = UIImageView(image: UIImage(named: "spaceAdvisorLogowhite"))
+        titleImageView.snp.makeConstraints { (make) in
+            make.width.equalTo(81)
+            make.height.equalTo(21)
+        }
+        self.navigationItem.titleView = titleImageView
+    }
+    
     func setupLeftBarItem() {
-        let leftItem = UIBarButtonItem(title: "=", style: .plain, target: self
-            , action:nil)
+        let leftItem = UIBarButtonItem(image: UIImage(named:"menuMaterialWhite"), style: .plain, target: self, action: nil)
         
         leftItem.rx.tap
             .subscribe(onNext: {
@@ -71,25 +78,51 @@ class MainViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = leftItem
     }
-    
+
     @objc func openLeftMenu() {
         ViewManager.sharedManager.openLeftSideMenu()
+    }
+    
+    func setupRightBarItem() {
+        let rightItem = UIBarButtonItem(image: UIImage(named:"mailMaterialWhite"), style: .plain, target: self, action: nil)
+        
+        rightItem.rx.tap
+            .subscribe(onNext: {
+                
+            })
+            .disposed(by: disposeBag)
+        
+        self.navigationItem.rightBarButtonItem = rightItem
     }
     
     func setupSegment() {
         orderSegmentControl.sectionTitles = ["待審核訂單", "最新成交訂單"]
         orderSegmentControl.selectionStyle = .fullWidthStripe
+        orderSegmentControl.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.spaGreyish, NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)]
+        orderSegmentControl.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.spaBrickRed, NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)]
         orderSegmentControl.selectionIndicatorLocation = .down
+        orderSegmentControl.selectionIndicatorColor = UIColor.spaBrickRed
+        orderSegmentControl.selectionIndicatorHeight = 3.0
         orderSegmentControl.segmentWidthStyle = .fixed
-        orderSegmentControl.backgroundColor = UIColor.gray
+        orderSegmentControl.backgroundColor = UIColor.spaLightGray
+        orderSegmentControl.addDefaultUnderline()
         orderSegmentControl.indexChangeBlock = { index in
             self.orderScrollView.scrollRectToVisible(
                 CGRect(x: self.orderScrollView.frame.width * CGFloat(index), y: 0, width: self.orderScrollView.frame.width, height: self.orderScrollView.frame.height), animated: true)
         }
         
         self.orderScrollView.delegate = self
+        self.orderScrollView.backgroundColor = UIColor.spaLightGray
     }
     
+}
+
+extension HMSegmentedControl {
+    func addDefaultUnderline() {
+        let underline = UIView(frame: CGRect(x: 0, y: self.frame.size.height - 3, width: UIScreen.main.bounds.size.width, height: 3))
+        underline.backgroundColor = UIColor.spaGreyish
+        self.insertSubview(underline, at: 0)
+    }
 }
 
 // banner
@@ -207,6 +240,16 @@ extension MainViewController: UIScrollViewDelegate {
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func setupTableView() {
+        self.leftTableView.register(UINib(nibName: "OrderInfoCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        let leftFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.leftTableView.frame.width, height: 10))
+        self.leftTableView.tableFooterView = leftFooterView
+        
+        self.rightTableView.register(UINib(nibName: "OrderInfoCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        let rightFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.leftTableView.frame.width, height: 10))
+        self.rightTableView.tableFooterView = rightFooterView
+    }
+    
     func createFakeData() {
         orderWaitApprovalList = []
         for index in 0...20 {
@@ -235,21 +278,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
 
-        return 0
-        
-//        if tableView == leftTableView {
-//            if let list = self.orderWaitApprovalList {
-//                return list.count
-//            }
-//        }
-//        else {
-//            if let list = self.orderNewList {
-//                return list.count
-//            }
-//        }
-//
-//        return 0
-
+        return 0        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -268,7 +297,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 11.7
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

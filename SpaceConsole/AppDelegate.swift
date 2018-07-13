@@ -16,12 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        UINavigationBar.appearance().backgroundColor = .black
-//        UINavigationBar.appearance().tintColor = .white
+        application.statusBarStyle = .lightContent
+        UINavigationBar.appearance().barTintColor = UIColor.spaBrickRed
+        UINavigationBar.appearance().tintColor = .white
+        
+        
+        // get rid of black bar underneath navbar
+//        UINavigationBar.appearance().shadowImage = UIImage()
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+
         
         self.window?.rootViewController = ViewManager.sharedManager
         self.window?.makeKeyAndVisible()
-        ViewManager.sharedManager.toLogin()
+        ViewManager.sharedManager.toMain()
         
         return true
     }

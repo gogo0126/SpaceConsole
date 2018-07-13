@@ -28,6 +28,11 @@
                                     <constraint firstAttribute="height" constant="57" id="8oa-R5-mpj"/>
                                     <constraint firstAttribute="width" constant="57" id="mhY-yj-eJx"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Dix-VQ-dgr">
                                 <rect key="frame" x="71" y="6" width="219" height="54.5"/>
@@ -76,7 +81,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dix-VQ-dgr" firstAttribute="leading" secondItem="g8U-pF-Lhd" secondAttribute="trailing" constant="4" id="5LL-Vu-lpN"/>
                             <constraint firstItem="g8U-pF-Lhd" firstAttribute="leading" secondItem="h1I-aq-CqP" secondAttribute="leading" constant="10" id="8xE-Z1-HFX"/>

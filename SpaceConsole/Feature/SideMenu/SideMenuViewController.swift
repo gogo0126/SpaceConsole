@@ -13,14 +13,11 @@ import RxCocoa
 class SideMenuViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var ownerLabel: UILabel!
-    
     @IBOutlet weak var editPersonalInfoButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var memberView: UIView!
     
     let cellIdentifier: String! = "SideMenuCell"
     
@@ -31,7 +28,11 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.backgroundColor = UIColor.gray
+        self.view.backgroundColor = UIColor.white
+        self.memberView.backgroundColor = UIColor.spaBrickRed
+        self.tableView.backgroundColor = UIColor.clear
+        self.imageView.cornerRadius = self.imageView.frame.width / 2
+        
 
         self.tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
