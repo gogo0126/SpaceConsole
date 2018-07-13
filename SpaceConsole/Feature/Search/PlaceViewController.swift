@@ -25,8 +25,9 @@ class PlaceViewController: UICollectionViewController, UICollectionViewDelegateF
         // Register cell classes
         self.collectionView!.register(PlaceCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        self.collectionView!.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
+        self.collectionView!.contentInset = UIEdgeInsetsMake(90, 0, 0, 0)
+        self.collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(90, 0, 0, 0)
+        self.collectionView!.backgroundColor = UIColor.spaLightGray
         
         let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsetsMake(padding, padding, padding, padding)
@@ -45,7 +46,7 @@ class PlaceViewController: UICollectionViewController, UICollectionViewDelegateF
         view.addSubview(searchMenu)
         searchMenu.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(view)
-            make.height.equalTo(50)
+            make.height.equalTo(90)
         }
     }
 

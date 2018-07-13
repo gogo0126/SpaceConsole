@@ -30,4 +30,8 @@ extension UIColor {
         return UIColor(white: 174.0 / 255.0, alpha: 1.0)
     }
 
+    @nonobjc class var spaWarmGrey: UIColor {
+        return UIColor(white: 116.0 / 255.0, alpha: 1.0)
+    }
+
 }

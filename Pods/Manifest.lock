@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.2)
+  - Differentiator (3.0.2)
   - HMSegmentedControl (1.5.5)
   - libwebp (0.6.1):
     - libwebp/core (= 0.6.1)
@@ -28,6 +29,10 @@ PODS:
   - MGSwipeTableCell (1.6.7)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
+  - RxDataSources (3.0.2):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SDWebImage/Core (4.4.1)
   - SDWebImage/WebP (4.4.1):
@@ -42,6 +47,7 @@ DEPENDENCIES:
   - HMSegmentedControl
   - MGSwipeTableCell
   - RxCocoa (~> 4.0)
+  - RxDataSources (~> 3.0)
   - RxSwift (~> 4.0)
   - SDWebImage/WebP
   - SideMenu
@@ -51,10 +57,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Differentiator
     - HMSegmentedControl
     - libwebp
     - MGSwipeTableCell
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - SDWebImage
     - SideMenu
@@ -63,16 +71,18 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 5d96f47bc3137a8d1803f2a80dc628f4d9ecf1ec
+PODFILE CHECKSUM: 3a0a9df053f1e6b86bda1cbd65c5568045bcaacf
 
 COCOAPODS: 1.5.3

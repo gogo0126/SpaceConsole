@@ -15,7 +15,22 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ta6-7L-ssy">
+                    <rect key="frame" x="12" y="32" width="351" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ta6-7L-ssy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="4ej-Mt-3BN"/>
+                <constraint firstItem="ta6-7L-ssy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="JM9-aa-OxF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ta6-7L-ssy" secondAttribute="trailing" constant="12" id="LEB-Vx-Rd7"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>

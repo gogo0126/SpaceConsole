@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var leftTableView: UITableView!
     @IBOutlet weak var rightTableView: UITableView!
     @IBOutlet weak var orderScrollViewHeight: NSLayoutConstraint!
+    
 
     let disposeBag = DisposeBag()
     var pageControl: UIPageControl?

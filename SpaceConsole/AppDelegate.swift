@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = ViewManager.sharedManager
         self.window?.makeKeyAndVisible()
-        ViewManager.sharedManager.toMain()
+        ViewManager.sharedManager.toPlaceList()
         
         return true
     }
