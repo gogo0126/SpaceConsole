@@ -42,6 +42,23 @@ class PlaceCell: BaseCell {
         return imgView
     }()
     
+    let littleIcon1imageView: UIImageView = {
+        let imgView = UIImageView(image: UIImage(named: "720view"))
+        imgView.contentMode = .scaleAspectFill
+        imgView.clipsToBounds = true
+        imgView.cornerRadius = 7
+        return imgView
+    }()
+
+    let littleIcon2imageView: UIImageView = {
+        let imgView = UIImageView(image: UIImage(named: "preview"))
+        imgView.contentMode = .scaleAspectFill
+        imgView.clipsToBounds = true
+        imgView.cornerRadius = 7
+        return imgView
+    }()
+
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +118,8 @@ class PlaceCell: BaseCell {
 
     override func setupViews() {
         addSubview(imageView)
+        imageView.addSubview(littleIcon1imageView)
+        imageView.addSubview(littleIcon2imageView)
         addSubview(titleLabel)
         addSubview(timePlanLabel)
         addSubview(detailView)
@@ -108,6 +127,20 @@ class PlaceCell: BaseCell {
         imageView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(self)
             make.height.equalTo(92)
+        }
+        
+        littleIcon1imageView.snp.makeConstraints { (make) in
+            make.left.equalTo(imageView).offset(7)
+            make.top.equalTo(imageView).offset(7)
+            make.width.equalTo(15)
+            make.height.equalTo(8)
+        }
+        
+        littleIcon2imageView.snp.makeConstraints { (make) in
+            make.left.equalTo(littleIcon1imageView.snp.right).offset(4)
+            make.top.equalTo(imageView).offset(7)
+            make.width.equalTo(15)
+            make.height.equalTo(8)
         }
         
         titleLabel.snp.makeConstraints { (make) in
@@ -128,5 +161,15 @@ class PlaceCell: BaseCell {
             make.right.equalTo(self).offset(6)
             make.bottom.equalTo(self.snp.bottom).offset(-4)
         }
+    }
+    
+    func configCell(model: PlaceModel) {
+        self.backgroundColor = UIColor.white
+        titleLabel.text = model.placeName
+        timePlanLabel.text = model.timePlane
+        lookupTimeLabel.text = model.lookupTime
+        adStatusLabel.text = model.adStatus
+        placeNoLabel.text = model.placeNo
+        lastUpdateTimeLabel.text = model.lastUpdateTime
     }
 }

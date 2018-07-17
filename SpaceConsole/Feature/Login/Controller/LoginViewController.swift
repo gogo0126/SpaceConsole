@@ -15,8 +15,6 @@ fileprivate let minimalPasswordLength = 5
 fileprivate let maxmalPasswordLength = 20
 
 class LoginViewController: BaseViewController {
-    
-    let disposeBag = DisposeBag()
 
     @IBOutlet weak var accountTextField: UITextField!
     

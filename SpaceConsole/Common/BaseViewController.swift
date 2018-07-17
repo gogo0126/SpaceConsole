@@ -7,25 +7,50 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseViewController: UIViewController {
+
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        setupLeftBarItem()
+        setupRightBarItem()
+
         
     }
 
+    func setupLeftBarItem() {
+        let leftItem = UIBarButtonItem(image: UIImage(named:"menuMaterialWhite"), style: .plain, target: self, action: nil)
+        
+        leftItem.rx.tap
+            .subscribe(onNext: {
+                ViewManager.sharedManager.openLeftSideMenu()
+            })
+            .disposed(by: disposeBag)
+        
+        self.navigationItem.leftBarButtonItem = leftItem
+    }
     
-    func setRightItemSearch() {
-        let img = UIImage(named: "ic_search")
-        let searchItem = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.plain, target: self, action: Selector("searchButtonOnClicked:"))
-        self.navigationItem.rightBarButtonItem = searchItem
+    @objc func openLeftMenu() {
+        ViewManager.sharedManager.openLeftSideMenu()
+    }
+    
+    func setupRightBarItem() {
+        let rightItem = UIBarButtonItem(image: UIImage(named:"mailMaterialWhite"), style: .plain, target: self, action: nil)
+        
+        rightItem.rx.tap
+            .subscribe(onNext: {
+                
+            })
+            .disposed(by: disposeBag)
+        
+        self.navigationItem.rightBarButtonItem = rightItem
     }
 
     
-
     /*
     // MARK: - Navigation
 

@@ -37,8 +37,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         setupTitleBarItem()
-        setupLeftBarItem()
-        setupRightBarItem()
         
         setupBannerView()
         setBannerList()
@@ -68,33 +66,6 @@ class MainViewController: UIViewController {
         self.navigationItem.titleView = titleImageView
     }
     
-    func setupLeftBarItem() {
-        let leftItem = UIBarButtonItem(image: UIImage(named:"menuMaterialWhite"), style: .plain, target: self, action: nil)
-        
-        leftItem.rx.tap
-            .subscribe(onNext: {
-                ViewManager.sharedManager.openLeftSideMenu()
-            })
-            .disposed(by: disposeBag)
-        
-        self.navigationItem.leftBarButtonItem = leftItem
-    }
-
-    @objc func openLeftMenu() {
-        ViewManager.sharedManager.openLeftSideMenu()
-    }
-    
-    func setupRightBarItem() {
-        let rightItem = UIBarButtonItem(image: UIImage(named:"mailMaterialWhite"), style: .plain, target: self, action: nil)
-        
-        rightItem.rx.tap
-            .subscribe(onNext: {
-                
-            })
-            .disposed(by: disposeBag)
-        
-        self.navigationItem.rightBarButtonItem = rightItem
-    }
     
     func setupSegment() {
         orderSegmentControl.sectionTitles = ["待審核訂單", "最新成交訂單"]

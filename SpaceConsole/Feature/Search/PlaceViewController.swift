@@ -9,38 +9,49 @@
 import UIKit
 import SnapKit
 
-private let reuseIdentifier = "Cell"
-
-class PlaceViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class PlaceViewController: BaseViewController {
     
     private let padding: CGFloat = 10
+    private let reuseIdentifier = "PlaceCell"
+    var placeList: [PlaceModel]?
+    
+    lazy var collectionView: UICollectionView? = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsetsMake(self.padding, self.padding, self.padding, self.padding)
+
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height), collectionViewLayout: layout)
+        
+        cv.register(PlaceCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        cv.contentInset = UIEdgeInsetsMake(90, 0, 70, 0)
+        cv.scrollIndicatorInsets = UIEdgeInsetsMake(90, 0, 0, 0)
+        cv.backgroundColor = UIColor.spaLightGray
+        
+        cv.delegate = self
+        cv.dataSource = self
+        return cv
+    }()
+    
+    
+    lazy var searchMenu: SearchPanel = {
+        let search = SearchPanel()
+        search.pickerViewDidShowedHandler = { [weak self] () in
+            print("do something")
+        }
+        search.backgroundColor = UIColor.spaLightGray
+        return search
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // self.clearsSelectionOnViewWillAppear = false
         
+        self.navigationItem.title = "管理你的場地清單"
         self.navigationController?.navigationBar.isTranslucent = false
-
-        // Register cell classes
-        self.collectionView!.register(PlaceCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        self.collectionView!.contentInset = UIEdgeInsetsMake(90, 0, 0, 0)
-        self.collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(90, 0, 0, 0)
-        self.collectionView!.backgroundColor = UIColor.spaLightGray
         
-        let layout = self.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(padding, padding, padding, padding)
-        
-        
-        
+        setupCollectionView()
         setupSearchMenu()
+        
+        loadData()
     }
-
-    let searchMenu: SearchPanel = {
-        let search = SearchPanel()
-        return search
-    }()
     
     private func setupSearchMenu() {
         view.addSubview(searchMenu)
@@ -49,11 +60,33 @@ class PlaceViewController: UICollectionViewController, UICollectionViewDelegateF
             make.height.equalTo(90)
         }
     }
+    
+    private func setupCollectionView() {
+        view.addSubview(collectionView!)
+    }
+    
+    func loadData() {
+        placeList = []
+        for _ in 0...20 {
+            let model = PlaceModel(placeName: "宴會大廳堂宴會大廳堂", timePlane: "時段制 / 刊登", lookupTime: "60天內瀏覽次數：2,380", adStatus: "廣告狀態：精選標籤/首Banner/優先排序", placeNo: "場地編號 BLTWN01837", lastUpdateTime: "最後更新日 2018/06/14")
+            placeList?.append(model)
+        }
+        
+        collectionView?.reloadData()
+    }
 
+}
+
+
+extension PlaceViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+        
     // MARK: UICollectionViewDataSource
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let list = placeList {
+            return list.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -69,10 +102,9 @@ class PlaceViewController: UICollectionViewController, UICollectionViewDelegateF
     }
     
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = UIColor.brown
-        // Configure the cell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlaceCell
+        cell.configCell(model: placeList![indexPath.item])
     
         return cell
     }
@@ -90,21 +122,6 @@ class PlaceViewController: UICollectionViewController, UICollectionViewDelegateF
     // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
     }
     */
     

@@ -19,12 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = UIColor.spaBrickRed
         UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
+                                                            NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)]
         
-        
-        // get rid of black bar underneath navbar
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
-
         
         self.window?.rootViewController = ViewManager.sharedManager
         self.window?.makeKeyAndVisible()
