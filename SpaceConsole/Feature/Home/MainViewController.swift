@@ -14,7 +14,7 @@ import SDWebImage
 import HMSegmentedControl
 import MGSwipeTableCell
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
 
     @IBOutlet weak var bannerContentView: UIView!
     @IBOutlet weak var bannerView: UIScrollView!
@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var orderScrollViewHeight: NSLayoutConstraint!
     
 
-    let disposeBag = DisposeBag()
     var pageControl: UIPageControl?
     var bannerTimer: Timer?
     var bannerContentList: [String]?

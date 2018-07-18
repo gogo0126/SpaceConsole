@@ -1,30 +1,14 @@
 //
-//  PlaceCell.swift
+//  PriceCell.swift
 //  SpaceConsole
 //
-//  Created by Jerry on 2018/7/12.
+//  Created by Jerry on 2018/7/17.
 //  Copyright © 2018 SpaceAdvisor. All rights reserved.
 //
 
 import UIKit
 
-class BaseCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews() {
-        
-    }
-}
-
-class PlaceCell: BaseCell {
-    
+class PriceCell: BaseCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.cornerRadius = 7
@@ -33,7 +17,7 @@ class PlaceCell: BaseCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     let imageView: UIImageView = {
         let imgView = UIImageView(image: UIImage(named: "rectangle"))
         imgView.contentMode = .scaleAspectFill
@@ -41,68 +25,44 @@ class PlaceCell: BaseCell {
         imgView.cornerRadius = 7
         return imgView
     }()
-    
+
     let littleIcon1imageView: UIImageView = {
-        let imgView = UIImageView(image: UIImage(named: "720view"))
-        imgView.contentMode = .scaleAspectFill
+        let imgView = UIImageView(image: UIImage(named: "pathView"))
+        imgView.contentMode = .scaleToFill
         imgView.clipsToBounds = true
         return imgView
     }()
-
-    let littleIcon2imageView: UIImageView = {
-        let imgView = UIImageView(image: UIImage(named: "preview"))
-        imgView.contentMode = .scaleAspectFill
-        imgView.clipsToBounds = true
-        return imgView
-    }()
-
     
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10.0)
-        label.text = "宴會大廳堂宴會大廳堂"
-        return label
-    }()
-
-    let timePlanLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 6.0)
-        label.text = "時段制 / 刊登"
+        label.text = "多功能會議廳-會議專案（半日）"
         return label
     }()
 
     lazy var detailView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [lookupTimeLabel, adStatusLabel, placeNoLabel, lastUpdateTimeLabel])
+        let view = UIStackView(arrangedSubviews: [approvalStatusLabel, lookupTimeLabel, lastUpdateTimeLabel])
         view.axis = .vertical
         view.alignment = .leading
         view.distribution = .fillEqually
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
+    let approvalStatusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 6.0)
+        label.text = "審核通過 / 刊登中"
+        return label
+    }()
+
     lazy var lookupTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 6.0)
         label.text = "60天內瀏覽次數：2,380"
-        return label
-    }()
-    
-    lazy var adStatusLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 6.0)
-        label.text = "廣告狀態：精選標籤/首Banner/優先排序"
-        return label
-    }()
-    
-    lazy var placeNoLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 6.0)
-        label.text = "場地編號 BLTWN01837"
         return label
     }()
 
@@ -117,42 +77,28 @@ class PlaceCell: BaseCell {
     override func setupViews() {
         addSubview(imageView)
         imageView.addSubview(littleIcon1imageView)
-        imageView.addSubview(littleIcon2imageView)
         addSubview(titleLabel)
-        addSubview(timePlanLabel)
         addSubview(detailView)
-        
+
         imageView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(self)
             make.height.equalTo(92)
         }
         
         littleIcon1imageView.snp.makeConstraints { (make) in
-            make.left.equalTo(imageView).offset(7)
-            make.top.equalTo(imageView).offset(7)
-            make.width.equalTo(15)
-            make.height.equalTo(8)
+            make.left.equalTo(imageView).offset(8)
+            make.top.equalTo(imageView).offset(0)
+            make.width.equalTo(19)
+            make.height.equalTo(34)
         }
-        
-        littleIcon2imageView.snp.makeConstraints { (make) in
-            make.left.equalTo(littleIcon1imageView.snp.right).offset(4)
-            make.top.equalTo(imageView).offset(7)
-            make.width.equalTo(15)
-            make.height.equalTo(8)
-        }
-        
+
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(6)
+            make.right.equalTo(self).offset(-3)
             make.top.equalTo(imageView.snp.bottom).offset(2)
             make.height.equalTo(14)
         }
         
-        timePlanLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-6)
-            make.centerY.equalTo(titleLabel)
-            make.height.equalTo(8)
-        }
-
         detailView.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(6)
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
@@ -161,13 +107,12 @@ class PlaceCell: BaseCell {
         }
     }
     
-    func configCell(model: PlaceModel) {
+    func configCell(model: PriceModel) {
         self.backgroundColor = UIColor.white
-        titleLabel.text = model.placeName
-        timePlanLabel.text = model.timePlane
+        titleLabel.text = model.pricePlanName
+        approvalStatusLabel.text = model.approvalStatus
         lookupTimeLabel.text = model.lookupTime
-        adStatusLabel.text = model.adStatus
-        placeNoLabel.text = model.placeNo
         lastUpdateTimeLabel.text = model.lastUpdateTime
     }
+
 }

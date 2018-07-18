@@ -10,12 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchPanel: UIControl {
+class PlaceFilterPanel: UIControl {
     
     let disposeBag = DisposeBag()
     var pickerViewDidShowedHandler: (() -> Void)?
     var placeSearchModel = PlaceSearchModel(keyword: "", pricePlan: 0, postStatus: 0, sortMethod: 0)
     var isPressDone: Bool = false
+    
     let blackView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0, alpha: 0.5)
@@ -174,7 +175,7 @@ class SearchPanel: UIControl {
     
 }
 
-extension SearchPanel: UIPickerViewDataSource, UIPickerViewDelegate {
+extension PlaceFilterPanel: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -217,7 +218,7 @@ extension SearchPanel: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 }
 
-extension SearchPanel {
+extension PlaceFilterPanel {
     @objc func cancelButtonPressed(item: UIBarButtonItem) {
         isPressDone = false
         self.endEditing(true)
@@ -240,7 +241,7 @@ extension SearchPanel {
     }
 }
 
-extension SearchPanel: UITextFieldDelegate {
+extension PlaceFilterPanel: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == keywordTextfield {
             return true
@@ -249,6 +250,7 @@ extension SearchPanel: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        isPressDone = true
         if let window = UIApplication.shared.keyWindow {
             window.addSubview(blackView)
             blackView.frame = window.frame
@@ -263,24 +265,40 @@ extension SearchPanel: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if !isPressDone || textField == keywordTextfield {
+        if textField == keywordTextfield {
+            placeSearchModel.keyword = textField.text!
             return
         }
         
         if (textField == pricePlanTextfield) {
-            let index = pricePlanPickerView.selectedRow(inComponent: 0)
-            placeSearchModel.pricePlan = index
-            pricePlanTextfield.text = pricePlanSource[index]
+            if isPressDone {
+                let index = pricePlanPickerView.selectedRow(inComponent: 0)
+                placeSearchModel.pricePlan = index
+                pricePlanTextfield.text = pricePlanSource[index]
+            }
+            else {
+                pricePlanPickerView.selectRow(placeSearchModel.pricePlan, inComponent: 0, animated: false)
+            }
         }
         else if (textField == postStatusTextfield) {
-            let index = postStatusPickerView.selectedRow(inComponent: 0)
-            placeSearchModel.postStatus = index
-            postStatusTextfield.text = postStatusSource[index]
+            if isPressDone {
+                let index = postStatusPickerView.selectedRow(inComponent: 0)
+                placeSearchModel.postStatus = index
+                postStatusTextfield.text = postStatusSource[index]
+            }
+            else {
+                postStatusPickerView.selectRow(placeSearchModel.postStatus, inComponent: 0, animated: false)
+            }
         }
         else if (textField == sortMethodTextfield) {
-            let index = sortPickerView.selectedRow(inComponent: 0)
-            placeSearchModel.sortMethod = index
-            sortMethodTextfield.text = sortMethodSource[index]
+            if isPressDone {
+                let index = sortPickerView.selectedRow(inComponent: 0)
+                placeSearchModel.sortMethod = index
+                sortMethodTextfield.text = sortMethodSource[index]
+            }
+            else {
+                sortPickerView.selectRow(placeSearchModel.sortMethod, inComponent: 0, animated: false)
+            }
         }
         
         searchText()

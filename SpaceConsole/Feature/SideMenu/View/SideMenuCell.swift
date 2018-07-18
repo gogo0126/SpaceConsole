@@ -37,36 +37,36 @@ class SideMenuCell: UITableViewCell {
     }
     
     func configCellLayout(model: SideMenuModel) {
-        self.titleLabel.text = model.title
+        self.titleLabel.text = model.menuName.rawValue
         self.expandLabel.isHidden = !model.isExpandable
 //        self.expandLabel.text = model.expanded ? "△" : "▽"
         self.expandLabel.text = ""
         if model.isSubMenu {
             self.leftImageViewLeadingContraint.constant = 59
         } else {
-            self.leftImageView.image = UIImage(named: getImageName(title: model.title))
+            self.leftImageView.image = UIImage(named: getImageName(menuName: model.menuName))
             self.leftImageViewLeadingContraint.constant = 19
         }
     }
     
-    func getImageName(title: String) -> String {
-        switch title {
-        case "控制面版":
-            return "homeMaterial"
-        case "場地主頁面預覽":
-            return "pictureOutlinedFontAwesome"
-        case "管理您的場地清單":
-            return "formatListBulletedMaterial"
-        case "您的價格方案清單":
-            return "tagAnticon"
-        case "訂單管理":
-            return "attachMoneyMaterial"
-        case "常見問題":
-            return "questionCircleFontAwesome"
-        case "登出":
-            return "personMaterial"
-        default:
-            return "homeMaterial"
+    func getImageName(menuName: SideMenuName) -> String {
+        switch menuName {
+            case .home:
+                return "homeMaterial"
+            case .ownerPage:
+                return "pictureOutlinedFontAwesome"
+            case .placeList:
+                return "formatListBulletedMaterial"
+            case .priceList:
+                return "tagAnticon"
+            case .orderManagement:
+                return "attachMoneyMaterial"
+            case .questionAnswer:
+                return "questionCircleFontAwesome"
+            case .logout:
+                return "personMaterial"
+            default:
+                return "homeMaterial"
         }
     }
     

@@ -16,3 +16,10 @@ struct PlaceModel {
     let placeNo: String
     let lastUpdateTime: String
 }
+
+struct PriceModel {
+    let pricePlanName: String
+    let approvalStatus: String
+    let lookupTime: String
+    let lastUpdateTime: String
+}

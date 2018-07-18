@@ -32,16 +32,15 @@ class ViewManager: UIViewController {
     func setRootViewController(_ newRootViewController: UIViewController) {
         //移除舊的畫面
         if self.myRootViewController != nil && !(self.myRootViewController == newRootViewController) {
-//            var oldVC: UIViewController? = self.myRootViewController
             let orView: UIView? = self.myRootViewController!.view
-            let transform: CATransform3D = CATransform3DTranslate(CATransform3DIdentity, 0, -UIScreen.main.bounds.height, 0)
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .beginFromCurrentState, animations: {
-                orView?.layer.transform = transform
-            }) { finished in
-                orView?.layer.transform = CATransform3DIdentity
+            // 先關掉移除舊畫面的動畫
+//            let transform: CATransform3D = CATransform3DTranslate(CATransform3DIdentity, 0, -UIScreen.main.bounds.height, 0)
+//            UIView.animate(withDuration: 0.3, delay: 0.0, options: .beginFromCurrentState, animations: {
+//                orView?.layer.transform = transform
+//            }) { finished in
+//                orView?.layer.transform = CATransform3DIdentity
                 orView?.removeFromSuperview()
-//                oldVC = nil
-            }
+//            }
         }
         self.myRootViewController = newRootViewController
         view.insertSubview(self.myRootViewController!.view, at: 0)
@@ -53,6 +52,24 @@ class ViewManager: UIViewController {
 
 // 切換navigation
 extension ViewManager {
+    
+    func toPage(menuName: SideMenuName) {
+        let vc : UIViewController
+        switch menuName {
+            case .home:
+                vc = MainViewController()
+            case .placeList:
+                vc = SearchViewController(searchType: .place)
+            case .priceList:
+                vc = SearchViewController(searchType: .price)
+            default:
+                fatalError("Not yet implement view controller")
+        }
+        
+        let nc = UINavigationController(rootViewController: vc)
+        ViewManager.sharedManager.setRootViewController(nc)
+
+    }
     
     func toLogin() {
         let nc = LoginNavigationController.defaultNavigation
@@ -66,7 +83,13 @@ extension ViewManager {
     }
 
     func toPlaceList() {
-        let placeViewController = PlaceViewController()        
+        let placeViewController = SearchViewController(searchType: .place)
+        let nc = UINavigationController(rootViewController: placeViewController)
+        ViewManager.sharedManager.setRootViewController(nc)
+    }
+
+    func toPriceList() {
+        let placeViewController = SearchViewController(searchType: .price)
         let nc = UINavigationController(rootViewController: placeViewController)
         ViewManager.sharedManager.setRootViewController(nc)
     }

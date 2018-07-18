@@ -23,7 +23,26 @@ class SideMenuViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-    var defaultItems:[SideMenuModel]?
+    var defaultItems:[SideMenuModel]? = {
+        let items = [
+            SideMenuModel(menuName: .home, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
+            SideMenuModel(menuName: .ownerPage, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
+            SideMenuModel(menuName: .placeList, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
+            SideMenuModel(menuName: .priceList, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
+            SideMenuModel(menuName: .orderManagement, isExpandable: true, expanded: false, isSubMenu: false,
+            subMenu:nil),
+            SideMenuModel(menuName: .successOrder, isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent: .orderManagement ),
+            SideMenuModel(menuName: .waitApprovalOrder, isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent: .orderManagement),
+            SideMenuModel(menuName: .waitPayOrder, isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent: .orderManagement),
+            SideMenuModel(menuName: .canceledOrder, isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent: .orderManagement),
+            SideMenuModel(menuName: .historyOrder, isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent: .orderManagement),
+            
+            SideMenuModel(menuName: .questionAnswer, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
+            SideMenuModel(menuName: .logout, isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil)
+        ]
+        return items
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,24 +55,6 @@ class SideMenuViewController: UIViewController {
 
         self.tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
-        defaultItems = [
-            SideMenuModel(title: "控制面板", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
-            SideMenuModel(title: "場地主頁面預覽", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
-            SideMenuModel(title: "管理您的場地清單", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
-            SideMenuModel(title: "您的價格方案清單", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
-            SideMenuModel(title: "訂單管理", isExpandable: true, expanded: false, isSubMenu: false,
-                          subMenu:nil),
-            SideMenuModel(title: "已成交訂單", isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent:"訂單管理" ),
-                SideMenuModel(title: "待審核訂單", isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent:"訂單管理"),
-                SideMenuModel(title: "待付款訂單", isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent:"訂單管理"),
-                SideMenuModel(title: "已取消訂單", isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent:"訂單管理"),
-                SideMenuModel(title: "歷史訂單", isExpandable: false, expanded: false, isSubMenu: true, subMenu: nil, isVisible: false, parent:"訂單管理"),
-            
-            SideMenuModel(title: "常見問題", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil),
-            SideMenuModel(title: "登出", isExpandable: false, expanded: false, isSubMenu: false, subMenu: nil)
-            ]
-        
-        
         self.reBind()
     
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(SideMenuModel.self))
@@ -64,15 +65,16 @@ class SideMenuViewController: UIViewController {
                 
                 if !model.isExpandable {
                     ViewManager.sharedManager.closeLeftSideMenu()
-                    ViewManager.sharedManager.toPlaceList()
+                    ViewManager.sharedManager.toPriceList()
+                    ViewManager.sharedManager.toPage(menuName: model.menuName)
                     return
                 }
                 
                 model.expanded = !model.expanded
-                let title = model.title
+                let menuName = model.menuName
                 
                 self?.defaultItems!.forEach() {
-                    if $0.parent == title {
+                    if $0.parent == menuName {
                         $0.isVisible = !$0.isVisible
                     }
                 }
