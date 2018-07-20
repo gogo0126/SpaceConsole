@@ -52,7 +52,7 @@ class SideMenuViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.clear
         self.imageView.cornerRadius = self.imageView.frame.width / 2
         
-
+        
         self.tableView.register(UINib(nibName: "SideMenuCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
         self.reBind()
@@ -112,7 +112,8 @@ class SideMenuViewController: UIViewController {
     }
 
     @IBAction func editPersonalInfoButtonPressed(_ sender: UIButton) {
-        
+        ViewManager.sharedManager.closeLeftSideMenu()
+        ViewManager.sharedManager.toPage(menuName: .editProfile)
     }
     
 }

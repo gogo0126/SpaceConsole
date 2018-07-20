@@ -9,6 +9,7 @@
 import Foundation
 
 enum SideMenuName: String {
+    case editProfile = "編輯個人資料"
     case home = "控制面板"
     case ownerPage = "場地主頁面預覽"
     case placeList = "管理您的場地清單"

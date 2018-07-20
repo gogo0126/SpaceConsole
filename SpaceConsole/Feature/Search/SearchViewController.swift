@@ -68,7 +68,6 @@ class SearchViewController: BaseViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = searchType == .place ? "管理你的場地清單" : "您的價格方案清單"
-        self.navigationController?.navigationBar.isTranslucent = false
         
         setupCollectionView()
         

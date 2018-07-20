@@ -62,6 +62,8 @@ extension ViewManager {
                 vc = SearchViewController(searchType: .place)
             case .priceList:
                 vc = SearchViewController(searchType: .price)
+            case .editProfile:
+                vc = EditProfileViewController()
             default:
                 fatalError("Not yet implement view controller")
         }

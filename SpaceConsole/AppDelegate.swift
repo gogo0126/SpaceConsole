@@ -22,10 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white,
                                                             NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14)]
         
+        UINavigationBar.appearance().isTranslucent = false
         
         self.window?.rootViewController = ViewManager.sharedManager
         self.window?.makeKeyAndVisible()
-        ViewManager.sharedManager.toPriceList()
+        ViewManager.sharedManager.toPage(menuName: .home)
         
         return true
     }
