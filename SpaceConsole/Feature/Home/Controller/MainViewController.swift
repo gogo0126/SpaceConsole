@@ -14,6 +14,8 @@ import SDWebImage
 import HMSegmentedControl
 import MGSwipeTableCell
 
+let cellIdentifier: String! = "OrderInfoCell"
+
 class MainViewController: BaseViewController {
 
     @IBOutlet weak var bannerContentView: UIView!
@@ -30,7 +32,6 @@ class MainViewController: BaseViewController {
     var bannerContentList: [String]?
     var orderWaitApprovalList: [OrderInfoModel]?
     var orderNewList: [OrderInfoModel]?
-    let cellIdentifier: String! = "OrderInfoCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,14 +87,6 @@ class MainViewController: BaseViewController {
         self.orderScrollView.backgroundColor = UIColor.spaLightGray
     }
     
-}
-
-extension HMSegmentedControl {
-    func addDefaultUnderline() {
-        let underline = UIView(frame: CGRect(x: 0, y: self.frame.size.height - 3, width: UIScreen.main.bounds.size.width, height: 3))
-        underline.backgroundColor = UIColor.spaGreyish
-        self.insertSubview(underline, at: 0)
-    }
 }
 
 // banner
@@ -281,47 +274,62 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == leftTableView {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier) as! OrderInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! OrderInfoCell
             let model = self.orderWaitApprovalList![indexPath.row]
             cell.configCell(model: model)
             
             //configure right buttons
-            let rejectButton = MGSwipeButton(title: "拒絕",backgroundColor: .lightGray) {
+            let rejectButton = MGSwipeButton(title: "拒絕",backgroundColor: .white) {
                 (sender: MGSwipeTableCell!) -> Bool in
                 ViewManager.sharedManager.showAlert(message: "已拒絕")
                 return false
             }
             rejectButton.cornerRadius = 7.0
+            rejectButton.setTitleColor(.black, for: .normal)
+            rejectButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             
-            let acceptButton = MGSwipeButton(title: "接受", backgroundColor: .red) {
+            let acceptButton = MGSwipeButton(title: "接受", backgroundColor: .white) {
                 (sender: MGSwipeTableCell!) -> Bool in
                 ViewManager.sharedManager.showAlert(message: "已接受")
                 return true
             }
             acceptButton.cornerRadius = 7.0
+            acceptButton.setTitleColor(.black, for: .normal)
+            acceptButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+
             cell.rightButtons = [rejectButton, acceptButton]
+            cell.rightSwipeSettings.buttonsDistance = 2
+
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier) as! OrderInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! OrderInfoCell
             let model = self.orderNewList![indexPath.row]
             cell.configCell(model: model)
             
             //configure right buttons
-            let rejectButton = MGSwipeButton(title: "拒絕",backgroundColor: .lightGray) {
+            let rejectButton = MGSwipeButton(title: "拒絕",backgroundColor: .white) {
                 (sender: MGSwipeTableCell!) -> Bool in
                 ViewManager.sharedManager.showAlert(message: "已拒絕")
                 return false
             }
             rejectButton.cornerRadius = 7.0
+            rejectButton.setTitleColor(.black, for: .normal)
+            rejectButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+
             
-            let acceptButton = MGSwipeButton(title: "接受", backgroundColor: .red) {
+            let acceptButton = MGSwipeButton(title: "接受", backgroundColor: .white) {
                 (sender: MGSwipeTableCell!) -> Bool in
                 ViewManager.sharedManager.showAlert(message: "已接受")
                 return true
             }
             acceptButton.cornerRadius = 7.0
+            acceptButton.setTitleColor(.black, for: .normal)
+            acceptButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+
             cell.rightButtons = [rejectButton, acceptButton]
+            cell.rightSwipeSettings.buttonsDistance = 2
+
             return cell
         }
     }

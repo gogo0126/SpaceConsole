@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = ViewManager.sharedManager
         self.window?.makeKeyAndVisible()
-        ViewManager.sharedManager.toPage(menuName: .home)
+        ViewManager.sharedManager.toPage(menuName: .orderManagement)
         
         return true
     }

@@ -56,16 +56,18 @@ extension ViewManager {
     func toPage(menuName: SideMenuName) {
         let vc : UIViewController
         switch menuName {
-            case .home:
-                vc = MainViewController()
-            case .placeList:
-                vc = SearchViewController(searchType: .place)
-            case .priceList:
-                vc = SearchViewController(searchType: .price)
-            case .editProfile:
-                vc = EditProfileViewController()
-            default:
-                fatalError("Not yet implement view controller")
+        case .home:
+            vc = MainViewController()
+        case .placeList:
+            vc = SearchViewController(searchType: .place)
+        case .priceList:
+            vc = SearchViewController(searchType: .price)
+        case .editProfile:
+            vc = EditProfileViewController()
+        case .orderManagement:
+            vc = OrderManagementController()
+        default:
+            fatalError("Not yet implement view controller")
         }
         
         let nc = UINavigationController(rootViewController: vc)
