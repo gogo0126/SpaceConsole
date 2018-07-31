@@ -39,6 +39,7 @@ class OrderManagementController: BaseViewController {
         segmentControl.selectionIndicatorHeight = 3.0
         segmentControl.segmentWidthStyle = .fixed
         segmentControl.backgroundColor = UIColor.spaLightGray
+
         segmentControl.indexChangeBlock = { [weak self] page in
             self!.orderScrollView.scrollRectToVisible(
                 CGRect(x: self!.orderScrollView.frame.width * CGFloat(page), y: 0, width: self!.orderScrollView.frame.width, height: self!.orderScrollView.frame.height), animated: true)
@@ -305,5 +306,31 @@ extension OrderManagementController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let orderDetailController = OrderDetailController()
+        self.navigationController?.pushViewController(orderDetailController, animated: true)
+        
+//        let orderInfoController = OrderInfomationController()
+//        let lastController = self.childViewControllers.last
+//        lastController?.willMove(toParentViewController: nil)
+//
+//        contentView.addSubview(orderInfoController.view)
+//
+//        orderInfoController.view.snp.makeConstraints { (make) in
+//            make.edges.equalTo(successTableView)
+//        }
+//
+//        addChildViewController(orderInfoController)
+//
+//        guard let last = lastController else {
+//            orderInfoController.didMove(toParentViewController: self)
+//            return
+//        }
+//
+//        self.transition(from: last, to: orderInfoController, duration: 0.5, options: .transitionCrossDissolve, animations: nil) { (finished) in
+//            orderInfoController.didMove(toParentViewController: self)
+//            last.removeFromParentViewController()
+//        }
+        
+    }
 }
